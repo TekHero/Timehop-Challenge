@@ -1,5 +1,5 @@
 # Timehop Mobile Code Challenge
-This app shows a list of images and/or videos in a carousel format (as Instagram's Stories) following a set of guidelines
+This app shows a list of images and/or videos in a carousel format (as [Instagram's Stories](https://about.instagram.com/features/stories)) following a set of guidelines
 
 ## Architecture
 Before getting started on developing this app, there were 3 ways that I could've went in terms of designing the UI to flow according to instagram stories, of the 3 ways (UIKit+Programmatic Approach, UIKit+Storyboard/Xib Approach, SwiftUI), I decided to develop the app's UI using a UIKit+Programmatic Approach as it offered more control and flexibility but also a decrease in development time but also primarily because it is much easier to review in terms of PR's. SwiftUI would have the same benefit, however SwiftUI is still relatively new and has a few bugs that may have caused some issues along the way.
