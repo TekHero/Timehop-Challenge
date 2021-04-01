@@ -36,6 +36,18 @@ final class StoryDetailViewModel {
         self.selectedStoryIndex = index
         
         initializePlayer()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(storyVideoHasFinished(notification:)), name: .AVPlayerItemDidPlayToEndTime, object: self.player.currentItem)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc private func storyVideoHasFinished(notification: Notification) {
+        guard let playerItem = notification.object as? AVPlayerItem else { return }
+        playerItem.seek(to: .zero, completionHandler: .none)
+        self.updateVideoLengthSliderValue.send(0)
     }
     
     private func initializePlayer() {
@@ -43,6 +55,7 @@ final class StoryDetailViewModel {
         let interval: CMTime = .init(value: 1, timescale: 2)
         self.player = AVPlayer()
         self.player.rate = 1
+        self.player.actionAtItemEnd = .none
         self.player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main) { (progress) in
             let seconds = CMTimeGetSeconds(progress)
             if self.player != nil, let duration = self.player.currentItem?.duration {
