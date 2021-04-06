@@ -53,6 +53,7 @@ final class StoryQueue: NSObject {
     }
     
     func currentStoryIndex() -> Int {
+        guard stories.count > 0 else { return 0 }
         return activeStoryIndex % stories.count
     }
 }
